@@ -1,17 +1,16 @@
 # JScamagru
 
-The 42 Web Project Camagru built with a different stack the 
-one specified in the subject (php,mysql).
+The 42 Web Project _Camagru_ built with a different stack the one specified in the subject (php and mysql).
 
-# The Stack
+**The Stack**
 Frontend - handlebars
 Backend - Express and Node
 Database - MongoDB
 
-# Authentication 
+**Authentication**
 PassportJS
 
-# Unit Testing 
+**Unit Testing** 
 Mocha 
 
 
