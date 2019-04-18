@@ -2,53 +2,56 @@
 <html>
 <head>
 	<title>Camagru</title>
-<!--	<link rel="stylesheet" href="css/bootstrap.css">
-	<link rel="stylesheet" href="css/styles.css"> -->
+	
+	<link rel="stylesheet" href="../../css/bootstrap.css">
+	<link rel="stylesheet" href="../../css/styles.css"> 
 </head>
 <body>
-<div class="container">
-	 <div class="header clearfix">
-       <nav>
-       	  <ul class="nav">
-	         {{#if  user}}
-	         <li role="presentation" class="nav-item">
-	         	<a class="nav-link active" href="/">Home</a>
-	         </li>
-	         <li role="presentation" class="nav-item"><a class="nav-link"><a href="/users/logout">Logout</a>
-	         </li>
-	         {{else}}
-	         <li role="presentation" class="nav-item">
-	         	<a class="nav-link"><a href="/users/login">Login</a>
-	         </li>
-	         
-	         <li role="presentation" class="nav-item"><a class="nav-link"><a href="/users/register">Register</a>
-	         </li>
-	         {{/if}}
 
-	        </ul>
-         </nav>
-	   <h3 class="text-muted">Camagru</h3>
-	 </div>
+
+	<div class="container">
+		<div class="header">
+			<ul class="nav nav-tabs my-2 my-md-0 mr-md-3"> 
+				{{#if  user}}
+				<li class="nav-item p-2"> <a class="nav-link active"
+					href="/">Gallery</a> 
+				</li>
+				<li  class="nav-item p-2"><a class="nav-link active"
+					href="/users/webcam">Webcam</a>
+				</li>
+				<li  class="nav-item p-2"><a class="nav-link active" href="/users/logout">Logout</a> 
+				</li>
+				{{else}} 
+				<li  class="nav-item p-2"> <a class="nav-link active" href="/users/login">Login</a> </li>
+				<li  class="nav-item p-2"><a class="nav-link active"
+					href="/users/register">Register</a>
+				</li> 
+				{{/if}}
+			</ul>
+			<h3 class="text-muted">Camagru</h3>
+		</div>
 		<div class="row">
-          <div class="col-lg-6"> 
-          	{{#if success_msg}}
-          		<div class="alert alert-success">{{success_msg}}</div>
-          	{{/if}}
+			<div class="col-lg-12"> 
+				{{#if success_msg}}
+				<div class="alert alert-success">{{success_msg}}</div>
+				{{/if}}
 
-          	{{#if error_msg}}
-          		<div class="alert alert-danger">{{error_msg}}</div>
-          	{{/if}}
+				{{#if error_msg}}
+				<div class="alert alert-danger">{{error_msg}}</div>
+				{{/if}}
 
-          	{{#if error}}
-          		<div class="alert alert-danger">{{error}}</div>
-          	{{/if}}
+				{{#if error}}
+				<div class="alert alert-danger">{{error}}</div>
+				{{/if}}
 
-            {{{body}}}
-          </div>  
-        </div>
-      <footer class="footer">
-        <p>&copy; tshata</p>
-      </footer>
-    </div> <!-- /container -->
+				{{{body}}}
+			</div>  
+		</div>
+		<footer class="footer">
+			<p>&copy; tshata</p>
+		</footer>
+	</div> <!-- /container -->
 </body>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </html>
+

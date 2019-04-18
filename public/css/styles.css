@@ -32,7 +32,7 @@ body {
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 730px;
+    max-width: 80%;
   }
 }
 .container-narrow > hr {
@@ -76,4 +76,26 @@ body {
 
 .page-header{
   margin-top: 0;
+}
+
+.cust{
+  position: relative;
+
+  border: 1px solid black;
+}
+
+.tlase{
+  border-bottom: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.card-body{
+
+}
+
+.ontop{
+  
+  z-index: -1;
+  height: 100%;
+  border: 1px solid black;
 }

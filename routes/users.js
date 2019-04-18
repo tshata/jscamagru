@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
 var User = require('../models/user');
+
 
 //Login
 router.get('/login',function(req, res){
@@ -14,6 +16,16 @@ router.get('/register',function(req, res){
 	res.render('register');
 });
 
+// auth with google+
+router.get('/google', (req, res) => {
+    // handle with passport
+    res.send('logging in with Google');
+});
+
+//Register
+router.get('/webcam',function(req, res){
+	res.render('webcam');
+});
 // Register User
 router.post('/register', function(req, res){
 	var name = req.body.name;
@@ -55,6 +67,7 @@ router.post('/register', function(req, res){
 	}
 });
 
+//local Strategy 
 passport.use(new LocalStrategy(
   function(username, password, done) {
 	User.getUserByUsername(username, function(err, user){
@@ -72,6 +85,8 @@ passport.use(new LocalStrategy(
 	});
 	});
   }));
+
+//Google Strategy
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);

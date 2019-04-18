@@ -10,6 +10,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+const multer = require('multer');
 mongoose.connect('mongodb://localhost:27017/camagru', { useNewUrlParser: true } );
 var db = mongoose.connection;
 
@@ -30,7 +31,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(coookieParser());
 
 //Set Static Folder
-app.use(express.static(path.join(__dirname, 'public'))); 
+app.use(express.static(path.join(__dirname, './public'))); 
 
  // Express Session
 app.use(session({
