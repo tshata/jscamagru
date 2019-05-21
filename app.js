@@ -13,6 +13,7 @@ var mongoose = require('mongoose');
 const passportSetup = require('./config/passport-setup');
 const multer = require('multer');
 mongoose.connect('mongodb://localhost:27017/camagru', { useNewUrlParser: true } );
+
 var db = mongoose.connection;
 
 var routes = require('./routes/index');
