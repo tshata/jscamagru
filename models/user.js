@@ -7,6 +7,9 @@ var UserSchema = mongoose.Schema({
 		type:String,
 		index:true
 	},
+	googleId: {
+		type: String
+	},
 	password: {
 		type: String
 	},
@@ -45,4 +48,4 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 		callback(null, isMatch);
 	});
 }
-module.exports
+module.exports = User;

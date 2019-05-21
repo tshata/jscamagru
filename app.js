@@ -10,13 +10,15 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
+const passportSetup = require('./config/passport-setup');
 const multer = require('multer');
 mongoose.connect('mongodb://localhost:27017/camagru', { useNewUrlParser: true } );
 var db = mongoose.connection;
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-var webcam = require('./public/js/webcam');
+var webcam = require('./routes/webcam');
+var authRoutes = require('./routes/auth-routes');
 
 //Init App
 var app = express();
@@ -30,6 +32,8 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(coookieParser());
+
+
 
 //Set Static Folder
 app.use(express.static(path.join(__dirname, './public'))); 
@@ -125,6 +129,9 @@ app.use(function (req, res, next) {
 //Middleware for routes
 app.use('/', routes);
 app.use('/users', users);
+
+//auth routes
+app.use('/auth', authRoutes);
 
 // Set Port
 app.set('port', (process.env.PORT || 3000));

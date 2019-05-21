@@ -1,7 +1,7 @@
 module.exports = {
         google: {
-            clientID: '616581710231-3gh4r5mnbeadi0r9h1gbvk844kbir61o.apps.googleusercontent.com',
-            clientSecret: 'y3kKg0rZlk3WhE5u-A5aHwsD'
+            clientID: '598228483367-hmkponmgfgntjko6tp6ksckj2a1aseuk.apps.googleusercontent.com',
+            clientSecret: '1UP4Ze3zJghIkUoggotE5hPd'
         },
         mongodb: {
             dbURI: 'mongodb://mongodb0.camagru:27017/admin'

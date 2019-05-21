@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
-var GoogleStrategy = require('passport-google-oauth').OAuthStrategy;
+var GoogleStrategy = require('passport-google-oauth20');
 var User = require('../models/user');
-
+const keys = require('../config/keys');
 
 //Login
 router.get('/login',function(req, res){
@@ -16,10 +16,14 @@ router.get('/register',function(req, res){
 	res.render('register');
 });
 
-// auth with google+
-router.get('/google', (req, res) => {
-    // handle with passport
-    res.send('logging in with Google');
+
+
+router.get('/logout', function(req, res){
+	req.logout();
+
+	req.flash('success_msg', 'You are logged out');
+
+	res.redirect('login');
 });
 
 //Register
@@ -87,6 +91,18 @@ passport.use(new LocalStrategy(
   }));
 
 //Google Strategy
+passport.use(
+	new GoogleStrategy({
+		//options for the google strat
+		callbackURL:'/auth/google/redirect',
+		clientID:keys.google.clientID,
+		clientSecret:keys.google.clientSecret 
+	}, (accessToken, refreshToken,profile,done) => {
+	//passport callback function
+		console.log("passport callback function");
+		console.log(profile);
+	})
+)
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -103,15 +119,9 @@ router.post('/login',
   function(req, res) {
     // If this function gets called, authentication was successful.
     // `req.user` contains the authenticated user.
-    res.redirect('/');
+   // res.redirect('/');
+   res.render('login');
   });
  
-router.get('/logout', function(req, res){
-	req.logout();
-
-	req.flash('success_msg', 'You are logged out');
-
-	res.redirect('login');
-});
 
 module.exports = router;

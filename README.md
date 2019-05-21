@@ -12,5 +12,4 @@ The 42 Web Project _Camagru_ built with a different stack the one specified in t
 
 **Unit Testing** 
   - Mocha 
-
-
+  
