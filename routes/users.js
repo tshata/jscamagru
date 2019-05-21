@@ -6,6 +6,28 @@ var GoogleStrategy = require('passport-google-oauth20');
 var User = require('../models/user');
 const keys = require('../config/keys');
 
+
+
+
+// auth with google
+router.get('/google',passport.authenticate('google', {
+	scope:['profile']
+}));
+
+//auth with facebook
+router.get('/facebook', (req, res) =>{
+    // handle with passport
+    res.send('logging in with facebook');
+});
+
+
+
+//callback route for google to redirect to
+router.get('/google/redirect', passport.authenticate('google'), (req,res) => {
+	res.send('You have reached the callback URI');
+});
+
+
 //Login
 router.get('/login',function(req, res){
 	res.render('login');
@@ -97,12 +119,12 @@ passport.use(
 		callbackURL:'/auth/google/redirect',
 		clientID:keys.google.clientID,
 		clientSecret:keys.google.clientSecret 
-	}, (accessToken, refreshToken,profile,done) => {
+	}, (accessToken, refreshToken, profile,done) => {
 	//passport callback function
 		console.log("passport callback function");
-		console.log(profile);
+		
 	})
-)
+);
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);

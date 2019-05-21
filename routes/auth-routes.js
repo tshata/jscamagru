@@ -1,7 +1,30 @@
 const router = require('express').Router();
 var passport = require('passport');
 
+//Login
+router.get('/login',function(req, res){
+	res.render('login');
+});
 
+//Register
+router.get('/register',function(req, res){
+	res.render('register');
+});
+
+
+
+router.get('/logout', function(req, res){
+	req.logout();
+
+	req.flash('success_msg', 'You are logged out');
+
+	res.redirect('login');
+});
+
+//Register
+router.get('/webcam',function(req, res){
+	res.render('webcam');
+});
 
 
 // auth with google

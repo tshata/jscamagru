@@ -12,13 +12,18 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 const passportSetup = require('./config/passport-setup');
 const multer = require('multer');
-mongoose.connect('mongodb://localhost:27017/camagru', { useNewUrlParser: true } );
-var db = mongoose.connection;
+
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var webcam = require('./routes/webcam');
 var authRoutes = require('./routes/auth-routes');
+const keys = require('./config/keys');
+
+mongoose.connect(keys.mongodb.dbURI, () => {console.log('connected to mongodb'); } );
+var db = mongoose.connection;
+
 
 //Init App
 var app = express();

@@ -21,7 +21,7 @@ var UserSchema = mongoose.Schema({
 	}
 });
 
-var User = module.exports = mongoose.model('User', UserSchema);
+var User = module.exports = mongoose.model('user', UserSchema);
 
 module.exports.createUser = function(newUser, callback){
 	bcrypt.genSalt(10, function(err, salt) {
@@ -48,4 +48,4 @@ module.exports.comparePassword = function(candidatePassword, hash, callback){
 		callback(null, isMatch);
 	});
 }
-module.exports = User;
+module.exports
