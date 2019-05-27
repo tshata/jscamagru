@@ -1,0 +1,55 @@
+{
+  "name": "jscamagru",
+  "version": "1.0.0",
+  "description": "JavaScript Camagru",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://tshata@bitbucket.org/tshata/jscamagru.git"
+  },
+  "keywords": [
+    "camagru",
+    "42",
+    "project",
+    "javascript"
+  ],
+  "author": "tshata (Tsepo Shata)",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/tshata/jscamagru#readme",
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "connect-flash": "*",
+    "consolidate": "*",
+    "cookie-parser": "*",
+    "cookie-session": "^1.3.3",
+    "epg-prep": "0.0.4",
+    "express": "*",
+    "express-handlebars": "*",
+    "express-messages": "*",
+    "express-photo-gallery": "^1.0.9",
+    "express-session": "*",
+    "express-validator": "*",
+    "gridfs-stream": "*",
+    "jsdom": "^15.1.0",
+    "method-override": "*",
+    "mongodb": "*",
+    "mongoose": "*",
+    "multer": "*",
+    "multer-gridfs-storage": "*",
+    "node-webcam": "^0.5.0",
+    "passport": "*",
+    "passport-42": "^1.2.5",
+    "passport-google-oauth": "*",
+    "passport-google-oauth20": "*",
+    "passport-http": "*",
+    "passport-local": "*",
+    "superagent": "*"
+  },
+  "devDependencies": {
+    "ws": "3.3.2"
+  }
+}
