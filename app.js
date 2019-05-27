@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 const passportSetup = require('./config/passport-setup');
-const multer = require('multer');
+
 mongoose.connect('mongodb://localhost:27017/camagru', { useNewUrlParser: true } );
 var db = mongoose.connection;
 const cookieSession = require('cookie-session');
@@ -23,6 +23,7 @@ var authRoutes = require('./routes/auth-routes');
 
 var Gallery = require('express-photo-gallery');
 
+const upload = require("./routes/upload");
 
 //Init App
 var app = express();
@@ -41,7 +42,7 @@ app.use(coookieParser());
 
 //Set Static Folder
 app.use(express.static(path.join(__dirname, './public'))); 
-
+/*
 app.post('/upload',(req, res) => {
   upload(req, res, (err) => {
       if(err){
@@ -54,7 +55,63 @@ app.post('/upload',(req, res) => {
       }
   });
 });
+*/
 
+//-----Manage the post requests.
+app.post("/upload", (req, res, next)=>{
+    //let multer manage the requests
+    //which are passed to the upload function
+    //by the main request.
+    //the function if everything went right
+    //will upload the file without cheking if already exists
+
+   
+
+    // ---------- MULTER UPLOAD FUNCTION -------------
+    upload(req, res, function (err) {
+        // need to check if the req.file is set.
+        if(req.file == null || req.file == undefined || req.file == ""){
+            //redirect to the same url            
+            res.redirect("/webcam");
+            
+        }else{
+            // An error occurred when uploading
+            if (err) {
+                console.log(err);
+            }else{
+                // Everything went fine
+                //define what to do with the params
+                //both the req.body and req.file(s) are accessble here
+                console.log(req.file);
+        
+        
+                //store the file name to mongodb    
+                //we use the model to store the file.
+                let image = new Image();
+                image.image = req.file.filename;
+        
+                
+        
+                //save the image
+                image.save(()=>{
+                    if(err){
+                        console.log(err);
+                    }else{
+                        //render the view again    
+                        res.redirect("/webcam");
+        
+                    }
+                });
+
+            }
+    
+        }
+
+    }); 
+
+
+    
+});
 var options = {
   title: 'Gallery'
 };
@@ -72,39 +129,6 @@ app.use(session({
 // Passport init
 app.use(passport.initialize());
 app.use(passport.session());
-
-//Set Storage Engine for multer
-const storage = multer.diskStorage({
-  destination: './public/images/',
-  filename: function(req, file, cb){
-    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-  }
-});
-
-// Init Upload
-const upload = multer({
-  storage: storage,
-  //limits:{fileSize: 1000000},
-  //fileFilter: function(req, file, cb){
-    //checkFileType(file, cb);
- // }
-}).single('image_up');
-
-// Check File Type
-function checkFileType(file, cb){
-  // Allowed ext
-  const filetypes = /jpeg|jpg|png|gif/;
-  // Check ext
-  const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
-  // Check mime
-  const mimetype = filetypes.test(file.mimetype);
-
-  if(mimetype && extname){
-    return cb(null,true);
-  } else {
-    cb('Error: Images Only!');
-  }
-}
 
 
 
@@ -143,7 +167,7 @@ app.use(function (req, res, next) {
 //Middleware for routes
 app.use('/', routes);
 app.use('/users', users);
-
+app.use('/webcam', upload);
 //auth routes
 app.use('/auth', authRoutes);
 
