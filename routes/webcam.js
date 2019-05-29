@@ -19,10 +19,9 @@ var opts = {
     //Delay in seconds to take shot
     //if the platform supports miliseconds
     //use a float (0.1)
-    //Currently only on windows
+    //Currently only on windowss
  
     delay: 0,
- 
  
     //Save shots in memory
  

@@ -168,4 +168,25 @@ canvas {
   width: 50%;
 }
 
+#sticker {
+  position: relative;
+  z-index: 9;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  width: 1.5em;
+  height: 1.8em;
+
+}
+
+.stickers {
+ position: relative;
+  background-color: #f1f1f1;
+  text-align: center;
+  border: 1px solid #d3d3d3;
+  width: 25%;
+  height: 25%
+    width: 3px;
+
+}
 

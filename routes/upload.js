@@ -95,7 +95,7 @@ route.post("/upload", (req, res, next)=>{
                 //we use the model to store the file.
                 let image = new Image();
                 image.image = req.file.filename;
-                image.owner = users.user.id;
+            //    image.owner = users.user.id;
         
                 //save the image
                 image.save(()=>{

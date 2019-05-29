@@ -90,7 +90,7 @@ app.post("/upload", (req, res, next)=>{
                 let image = new Image();
                 image.image = req.file.filename;
         
-                
+                console.log(image);
         
                 //save the image
                 image.save(()=>{
