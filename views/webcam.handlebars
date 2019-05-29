@@ -4,32 +4,32 @@
       <div class="card card-body col-md-6">
         <div class="row">
           <video class="card col-md-9"id="video">Stream not available...</video>
-          <div class="stickers" style="background-color: grey">
-            <img src="/images/stickers/31yZA32hKnL.jpg"  dragit="true" draggable="true" id="sticker">
-            
-            <img src="/images/stickers/41M9k0noGtL.jpg" dragit="true" draggable="true" id="sticker">
+          <div data-draggable="target" class="stickers" style="background-color: grey">
+            <img src="/images/stickers/41M9k0noGtL.jpg" data-draggable="item" class="select" dragit="true" draggable="true" id="sticker">
+         
+            <img src="/images/stickers/31yZA32hKnL.jpg" data-draggable="item"  dragit="true" draggable="true" id="sticker">
 
-            <img src="/images/stickers/punisher.jpeg" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/beard_PNG6268.png" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/Cyber-Security-PNG-HD.png"  dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/images.png" dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/punisher.jpeg" data-draggable="item" dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/beard_PNG6268.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/Cyber-Security-PNG-HD.png" data-draggable="item"  dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/images.png" dragit="true" data-draggable="item" draggable="true" id="sticker">
 
-            <img src="/images/stickers/Marvel-Thanos-PNG-Free-Download.png" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/beard_.png" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/star_sticker.jpg"  dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/School-Border-PNG-Transparent.png" dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/Marvel-Thanos-PNG-Free-Download.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/beard_.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/star_sticker.jpg" data-draggable="item"  dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/School-Border-PNG-Transparent.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
 
-            <img src="/images/stickers/Tech-Frame-PNG-Clipart.png" sragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/Tech-Frame-PNG-File.png" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/Tech-Frame-Transparent-PNG.png"  dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/Text-Balloon-PNG-Image.png" dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/Tech-Frame-PNG-Clipart.png" data-draggable="item" sragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/Tech-Frame-PNG-File.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/Tech-Frame-Transparent-PNG.png" data-draggable="item"  dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/Text-Balloon-PNG-Image.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
 
-            <img src="/images/stickers/WeThinkCode-South-Africa.gif"  dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/WeThinkCode-South-Africa.gif" data-draggable="item"  dragit="true" draggable="true" id="sticker">
 
           </div>
         </div>
         <br>
-        <div><button id="photo-button" name="image_cam" class="btn btn-primary ">
+        <div class="row" style="align-self: center;"><button id="photo-button" name="image_cam" class="btn btn-primary ">
           Take Photo
         </button>
         <select id="photo-filter" class="select">
@@ -56,9 +56,6 @@
     </div>
   </div>
   <div id="photos" class="card card-body col-md-6">
-
-
-
 
     <canvas id="canvas"></canvas>
 
