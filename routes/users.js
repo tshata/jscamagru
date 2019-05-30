@@ -6,6 +6,7 @@ var GoogleStrategy = require('passport-google-oauth20');
 var WeThinkCodeStrategy = require('passport-42').Strategy;
 var User = require('../models/user');
 const keys = require('../config/keys');
+const Image = require("../models/images");
 
 //Login
 router.get('/login',function(req, res){
@@ -17,7 +18,14 @@ router.get('/register',function(req, res){
 	res.render('register');
 });
 
-
+function ensureAuthenticated(req, res, next){
+	if(req.isAuthenticated()){
+		return next();
+	}else{
+		req.flash('error_msg','You need to be logged in to see that page');
+		res.redirect('users/login');
+	}
+}
 
 router.get('/logout', function(req, res){
 	req.logout();
@@ -27,11 +35,31 @@ router.get('/logout', function(req, res){
 	res.redirect('login');
 });
 
-//Register
-router.get('/webcam',function(req, res){
+// /users/webcam
+router.get('/webcam', ensureAuthenticated, function(req, res){
+	Image.find({owner: 'ObjectId(' + req.user.id + ')'}, (err, images)=>{
+       console.log(images);
+       if(err){
+           console.log(err.message);
+       } else {
+          let imagesPath = [];
+
+          for (let i = 0;i < images.length;i++){
+            imagesPath.push(images[i].image);
+          }
+           //return the array of images found.
+           res.render("webcam", {
+               images: imagesPath
+           });
+       } 
+	 });
+
+
 	res.render('webcam');
 });
-// Register User
+
+
+// /users/register
 router.post('/register', function(req, res){
 	var name = req.body.name;
 	var email = req.body.email;

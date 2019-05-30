@@ -1,33 +1,18 @@
-  <form action="/upload" method="POST" enctype="multipart/form-data">
+  <form action="/webcam/upload" method="POST" enctype="multipart/form-data">
     <!-- Photo Grid -->
     <div class="row">
       <div class="card card-body col-md-6">
         <div class="row">
           <video class="card col-md-9"id="video">Stream not available...</video>
           <div data-draggable="target" class="stickers" style="background-color: grey">
-            <img src="/images/stickers/41M9k0noGtL.jpg" data-draggable="item" class="select" dragit="true" draggable="true" id="sticker">
-         
-            <img src="/images/stickers/31yZA32hKnL.jpg" data-draggable="item"  dragit="true" draggable="true" id="sticker">
+        
 
-            <img src="/images/stickers/punisher.jpeg" data-draggable="item" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/beard_PNG6268.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/Cyber-Security-PNG-HD.png" data-draggable="item"  dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/images.png" dragit="true" data-draggable="item" draggable="true" id="sticker">
-
-            <img src="/images/stickers/Marvel-Thanos-PNG-Free-Download.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/beard_.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/star_sticker.jpg" data-draggable="item"  dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/School-Border-PNG-Transparent.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
-
-            <img src="/images/stickers/Tech-Frame-PNG-Clipart.png" data-draggable="item" sragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/Tech-Frame-PNG-File.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/Tech-Frame-Transparent-PNG.png" data-draggable="item"  dragit="true" draggable="true" id="sticker">
-            <img src="/images/stickers/Text-Balloon-PNG-Image.png" data-draggable="item" dragit="true" draggable="true" id="sticker">
-
-            <img src="/images/stickers/WeThinkCode-South-Africa.gif" data-draggable="item"  dragit="true" draggable="true" id="sticker">
+            <img src="/images/stickers/Tech-Frame-Transparent-PNG.png" onclick="overLay(event)" class="sticker">
+            <img src="/images/stickers/Tech-Frame-Transparent-PNG.png" dragit="true" onclick="overLay(event)"draggable="true" class="sticker">
+           
 
           </div>
-        </div>
+        
         <br>
         <div class="row" style="align-self: center;"><button id="photo-button" name="image_cam" class="btn btn-primary ">
           Take Photo
@@ -52,16 +37,25 @@
           <label for="file" class="custom-file-label">Choose File</label>
         </div>
         <input type="submit" value="Submit" class="btn btn-primary btn-block">
-      </form>
+        </div>
+      </div>
+    </div>
+    <div id="photos" class="card card-body col-md-6">
+
+      <canvas id="canvas"></canvas>
+</div></div>
     </div>
   </div>
-  <div id="photos" class="card card-body col-md-6">
-
-    <canvas id="canvas"></canvas>
-
-  </div>
-</div>
 </form>
+{{#each images as |image|}}
+          <!-- <div id="{{image.id}}" class="image">
+            <div class="delete">Delete</div><img src="{{image.image}}">
+          </div> -->
 
+          <img  class="img-responsive" src="/images/{{image}}">
+
+
+          {{/each}}
+          <script type="text/javascript" src="/js/webcam.js"></script> 
 
 

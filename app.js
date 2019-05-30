@@ -55,7 +55,7 @@ app.post('/upload',(req, res) => {
       }
   });
 });
-*/
+
 
 //-----Manage the post requests.
 app.post("/upload", (req, res, next)=>{
@@ -65,7 +65,7 @@ app.post("/upload", (req, res, next)=>{
     //the function if everything went right
     //will upload the file without cheking if already exists
 
-   
+   console.log("app.s");
 
     // ---------- MULTER UPLOAD FUNCTION -------------
     upload(req, res, function (err) {
@@ -109,9 +109,9 @@ app.post("/upload", (req, res, next)=>{
 
     }); 
 
-
     
-});
+});*/
+
 var options = {
   title: 'Gallery'
 };

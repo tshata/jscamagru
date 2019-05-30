@@ -1,9 +1,24 @@
 var express = require('express');
 var router = express.Router();
-
+var mongoose = require('mongoose');
+const Image = require("../models/images");
 //Get Hompage 
 router.get('/',ensureAuthenticated, function(req, res){
-	res.render('index');
+
+Image.find({}, (err, docs) => {
+  if(err){
+    throw err;
+  }
+console.log(docs);
+  let imagesPath = [];
+
+  for (let i = 0;i < docs.length;i++){
+    imagesPath.push(docs[i].image);
+  }
+
+  res.render('index', {images: imagesPath});
+  
+})
 });
 
 function ensureAuthenticated(req, res, next){

@@ -2,49 +2,51 @@
 <p>Welcome</p>  
 
     <div class="row">
-    <div class="card card-body col-md-12">
+    <div class="col-md-12 card" style="align-self: center;">
 
       {{#each images as |image|}}
-          <div id="{{image.id}}" class="image">
+          <!-- <div id="{{image.id}}" class="image">
             <div class="delete">Delete</div><img src="{{image.image}}">
-          </div>
-        {{/each}}
+          </div> -->
+
+          <img src="images/{{image}}">
+
+
+      {{/each}}
+
+<!--        
 <div class="row">
-            <div class="card card-body col-md-3">
+            <div class="card card-body ">
+               <img id="one" src="">
+            </div>
+            <div class="card card-body ">
                <img src="images/images.png">
             </div>
-            <div class="card card-body col-md-3">
+            <div class="card card-body ">
                <img src="images/images.png">
             </div>
-            <div class="card card-body col-md-3">
+            <div class="card card-body ">
                <img src="images/images.png">
             </div>
-            <div class="card card-body col-md-3">
+            <div class="card card-body ">
                <img src="images/images.png">
             </div>
-            <div class="card card-body col-md-3">
+            <div class="card card-body ">
                <img src="images/images.png">
             </div>
-            <div class="card card-body col-md-3">
+            <div class="card card-body ">
                <img src="images/images.png">
             </div>
-            <div class="card card-body col-md-3">
+            <div class="card card-body ">
                <img src="images/images.png">
             </div>
-            <div class="card card-body col-md-3">
+            <div class="card card-body ">
                <img src="images/images.png">
             </div>
-            <div class="card card-body col-md-3">
-               <img src="images/images.png">
-            </div>
-            <div class="card card-body col-md-3">
-               <img src="images/images.png">
-            </div>
-</div>
-           
+
           
     </div>
-
+-->
 
       <ul class="thumbnails">
       {{#each elements}}
