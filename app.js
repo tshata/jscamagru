@@ -12,7 +12,7 @@ var mongo = require('mongodb');
 var mongoose = require('mongoose');
 const passportSetup = require('./config/passport-setup');
 
-mongoose.connect('mongodb://localhost:27017/camagru', { useNewUrlParser: true } );
+mongoose.connect('mongodb+srv://admin:<1234>@camagru-jqyh3.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true } );
 var db = mongoose.connection;
 const cookieSession = require('cookie-session');
 const keys = require('./config/keys');
