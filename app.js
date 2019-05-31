@@ -111,6 +111,14 @@ app.post("/upload", (req, res, next)=>{
 
     
 });*/
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }else{
+        req.flash('error_msg','You need to be logged in to see that page');
+        res.redirect('/');
+    }
+}
 
 var options = {
   title: 'Gallery'
@@ -163,6 +171,27 @@ app.use(function (req, res, next) {
 });
 
 
+app.post('/upload',ensureAuthenticated, (req, res) => {
+  const click = {clickTime: new Date()};
+  console.log(click);
+  console.log(db);
+
+  db.collection('images').save(click, (err, result) => {
+    if (err) {
+      return console.log(err);
+    }
+    console.log('like added to photo');
+    res.sendStatus(201);
+  });
+});
+
+app.get('/clicks', (req, res) => {
+
+  db.collection('images').find().toArray((err, result) => {
+    if (err) return console.log(err);
+    res.send(result);
+  });
+});
 
 //Middleware for routes
 app.use('/', routes);

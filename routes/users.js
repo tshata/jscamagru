@@ -1,12 +1,11 @@
 var express = require('express');
-var router = require("./upload");
+var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth20');
 var WeThinkCodeStrategy = require('passport-42').Strategy;
 var User = require('../models/user');
 const keys = require('../config/keys');
-const Image = require("../models/images");
 
 //Login
 router.get('/login',function(req, res){
@@ -18,14 +17,7 @@ router.get('/register',function(req, res){
 	res.render('register');
 });
 
-function ensureAuthenticated(req, res, next){
-	if(req.isAuthenticated()){
-		return next();
-	}else{
-		req.flash('error_msg','You need to be logged in to see that page');
-		res.redirect('users/login');
-	}
-}
+
 
 router.get('/logout', function(req, res){
 	req.logout();
@@ -35,10 +27,11 @@ router.get('/logout', function(req, res){
 	res.redirect('login');
 });
 
-
-
-
-// /users/register
+//Register
+router.get('/webcam',function(req, res){
+	res.render('webcam');
+});
+// Register User
 router.post('/register', function(req, res){
 	var name = req.body.name;
 	var email = req.body.email;
@@ -48,12 +41,12 @@ router.post('/register', function(req, res){
 
 	// Validation
 	req.checkBody('name', 'Name is required').notEmpty();
+	req.checkBody('password', 'Your password must be at least 8 characters, alphanumeric and contain a special character').not().isEmpty().isAlphanumeric().isLength({min: 8});
 	req.checkBody('email', 'Email is required').notEmpty();
 	req.checkBody('email', 'Email is not valid').isEmail();
 	req.checkBody('username', 'Username is required').notEmpty();
 	req.checkBody('password', 'Password is required').notEmpty();
 	req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
-
 	var errors = req.validationErrors();
 
 	if(errors){
@@ -70,7 +63,7 @@ router.post('/register', function(req, res){
 
 		User.createUser(newUser, function(err, user){
 			if(err) throw err;
-			//console.log(user);
+			console.log(user);
 		});
 
 		req.flash('success_msg', 'You are registered and can now login');
@@ -98,7 +91,6 @@ passport.use(new LocalStrategy(
 		if(!user){
 			return done(null, false, {message: 'Unknown User'});
 		}
-		console.log(user);
 	User.comparePassword(password, user.password, function(err, isMatch){
 		if(err) throw err;
 		if(isMatch){
@@ -123,7 +115,7 @@ passport.use(
 			if(currentUser){
 				//if we already have this user
 				console.log('user is:' + currentUser);
-			return	done(null, currentUser);
+				done(null, currentUser);
 			}
 			else
 			{
@@ -132,7 +124,7 @@ passport.use(
 				googleId: profile.id
 				}).save().then((newUser) => {
 				console.log('new user created: ' + newUser);
-			return	done(null, newUser);
+				done(null, newUser);
 				});
 			}
 		});
@@ -150,7 +142,7 @@ passport.use(new WeThinkCodeStrategy({
 		User.findOne({wethinkcodeId: profile.id}).then((currentUser) => {
 			if(currentUser){
 				//if we already have this user
-		//		console.log('user is:' + currentUser);
+				console.log('user is:' + currentUser);
 				done(null, currentUser);
 			}
 			else
@@ -159,8 +151,8 @@ passport.use(new WeThinkCodeStrategy({
 				username: profile.login,
 				wethinkcodeId: profile.id
 				}).save().then((newUser) => {
-		//		console.log('new user created: ' + newUser);
-		return		done(null, newUser);
+				console.log('new user created: ' + newUser);
+				done(null, newUser);
 				});
 			}
 		});
@@ -169,12 +161,12 @@ passport.use(new WeThinkCodeStrategy({
 	)
 
 passport.serializeUser(function(user, done) {
-return done(null, user.id);
+  done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
   User.getUserById(id, function(err, user) {
- return   done(err, user);
+    done(err, user);
   });
 });
 

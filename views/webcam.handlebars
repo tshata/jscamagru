@@ -8,19 +8,14 @@
 
         
      </div>
-     <div class="stickers" style="background-color: grey">
+     <div class="stickers card-body">
 
       <img src="/images/stickers/Tech-Frame-Transparent-PNG.png"  id="sticker" onclick="overLay(event)">
       <img src="/images/stickers/Tech-Frame-PNG-File.png"  id="sticker" onclick="overLay(event)">
       <img src="/images/stickers/Tech-Frame-PNG-Clipart.png"  id="sticker" onclick="overLay(event)">
       <img src="/images/stickers/WeThinkCode-South-Africa.gif"  id="sticker" onclick="overLay(event)">
       <p>Click on sticker to add it to the image</p>
-
-
-    </div>
-     <div>
-
-    <button id="photo-button" name="image_up" class="btn btn-primary ">
+  <button id="photo-button" name="image_up" class="btn btn-primary ">
     Take Photo
   </button>
   <button id="save"  class="btn btn-primary ">
@@ -41,6 +36,11 @@
   </div>
   <div>
 
+    </div>
+     <div>
+
+  
+
   <div class="custom-file mb-3">
     <input type="file" name="image_up" id="file" class="custom-file-input">
     <label for="file" class="custom-file-label">Choose File</label>
@@ -56,7 +56,7 @@
 </div>
        <div class="card-body card col-md-12">
 {{#each images as |image|}}
-<img  class="img-responsive gallery" src="/images/{{image}}">
+<img  class="img-responsive gallery_own" src="/images/{{image}}">
 {{/each}}
         
      </div>

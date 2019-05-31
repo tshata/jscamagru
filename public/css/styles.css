@@ -96,6 +96,10 @@ body {
     display: inline-block;
 }
 .gallery{
+  width: 180px;
+  height: 150px;
+}
+.gallery_own{
   width: 100px;
   height: 100px;
 }

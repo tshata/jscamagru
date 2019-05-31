@@ -95,9 +95,6 @@ route.get('/webcam', ensureAuthenticated, function(req, res){
            });
        } 
      });
-
-
-    res.render('webcam');
 });
 
 //jimp image merger

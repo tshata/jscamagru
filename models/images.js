@@ -10,6 +10,12 @@ let imagesSchema = mongoose.Schema({
     {
     	type : String,
     	required: true
+    },
+    comment : {
+    	type : String,
+    },
+    like : {
+    	type : Number
     }
 
 });

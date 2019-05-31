@@ -42,6 +42,7 @@
     "multer": "*",
     "multer-gridfs-storage": "*",
     "node-webcam": "^0.5.0",
+    "nodemailer": "^6.2.1",
     "passport": "*",
     "passport-42": "^1.2.5",
     "passport-google-oauth": "*",

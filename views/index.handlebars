@@ -1,22 +1,29 @@
 <h2 class="page-header">Gallery</h2>
 <p>Welcome</p>  
 
-    
-    <div class="col-md-12" id="pagination" style="align-self: center;">
-      <div class="row">
 
-        {{#each images as |image|}}
-      
-          <img class="gallery img-responsive" src="images/{{image}}">
-        {{/each}}
-      
+<div class="col-md-12" id="pagination" style="align-self: center;">
+  <div class="row">
+
+    {{#each images as |image|}}
+    
+    <img class="gallery img-responsive modal-content" src="images/{{image}}">
+    {{/each}}
+    
     
     <ul class="thumbnails">
       {{#each elements}}
-        <li href="/gallery" class="card card-body col-md-6"><a class="thumbnail" href="{{permalink}}" target="_blank"><img src="{{image.image}}" title="{{data.image.caption}}" /></a></li>
+      <li href="/gallery" class="card card-body col-md-6"><a class="thumbnail" href="{{permalink}}" target="_blank"><img src="{{image.image}}" title="{{data.image.caption}}" /></a></li>
       {{/each}}
-      </ul>
-    </div>
-    </div>
+    </ul>
+  </div>
+</div>
+
+
+<!-- <div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div> -->
 <br>
 

@@ -64,7 +64,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
     // Change filter back to none
     filter = 'none';
     // Set video filter
-    video.style.filter = filter;
+    canvas.style.filter = filter;
     // Reset select list
     photoFilter.selectedIndex = 0;
 });
@@ -95,28 +95,26 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
       img.style.filter = filter;
 
       // // Add image to photos
-      // photos.appendChild(img);
+    // photos.appendChild(img);
   }
 }
 function overLay(selectedImg){
-   //  if(imgUrl == null)
-     //    return;
+   // if(canvas == null)
+   //       return;
 
      selectedImg = selectedImg.target;
      let img = new Image();
      img.src = selectedImg.src;
+
+     if(img.src == null)
+        return;
    // // console.log(img);
    // // console.log(selectedImg);
    const context = canvas.getContext('2d');
 
    context.globalOperation = "source-over";
   let saved_img = context.drawImage(img, 0, 0, width,height);
-   //  if(width && height) {
-   //    // set canvas props
-       // canvas.width = width;
-       // canvas.height = height;
-
-   //    // Draw an image of the video on the canvas
+ 
 
    var button = document.getElementById('save');
    button.addEventListener('click', function (e) {
@@ -149,4 +147,73 @@ button.addEventListener('click', function (e) {
 });
 
 
-//=======================================================================
+// //=======================================================================
+// // Get the modal
+// var modal = document.getElementById("myModal");
+
+// // Get the image and insert it inside the modal - use its "alt" text as a caption
+// var img = document.getElementById("myImg");
+// var modalImg = document.getElementById("img01");
+// var captionText = document.getElementById("caption");
+// img.onclick = function(){
+//   modal.style.display = "block";
+//   modalImg.src = this.src;
+//   captionText.innerHTML = this.alt;
+// }
+
+// // Get the <span> element that closes the modal
+// var span = document.getElementsByClassName("close")[0];
+
+// // When the user clicks on <span> (x), close the modal
+// span.onclick = function() { 
+//   modal.style.display = "none";
+// }
+
+// const button = document.getElementById('like');
+// button.addEventListener('click', function(e) {
+//   console.log('button was clicked');
+// });
+
+// console.log('Client-side code running');
+
+// const button = document.getElementById('like');
+// button.addEventListener('click', function(e) {
+//   console.log('button was clicked');
+
+//   fetch('/clicked', {method: 'POST'})
+//     .then(function(response) {
+//       if(response.ok) {
+//         console.log('Click was recorded');
+//         return;
+//       }
+//       throw new Error('Request failed.');
+//     })
+//     .catch(function(error) {
+//       console.log(error);
+//     });
+// });
+
+// setInterval(function() {
+//   fetch('/clicks', {method: 'GET'})
+//     .then(function(response) {
+//       if(response.ok) return response.json();
+//       throw new Error('Request failed.');
+//     })
+//     .then(function(data) {
+//       document.getElementById('counter').innerHTML = `Button was clicked ${data.length} times`;
+//     })
+//     .catch(function(error) {
+//       console.log(error);
+//     });
+// }, 1000);
+
+// $('#demo').pagination({
+//     dataSource: [1, 2, 3, 4, 5, 6, 7, ... , 35],
+//     pageSize: 5,
+//     autoHidePrevious: true,
+//     autoHideNext: true,
+//     callback: function(data, pagination) {
+//         // template method of yourself
+//         var html = template(data);
+//         dataContainer.html(html);
+//     }

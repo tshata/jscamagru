@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose');
 const Image = require("../models/images");
 //Get Hompage 
-router.get('/',ensureAuthenticated, function(req, res){
+router.get('/', function(req, res){
 
 Image.find({}, (err, docs) => {
   if(err){
@@ -14,7 +14,7 @@ Image.find({}, (err, docs) => {
   for (let i = 0;i < docs.length;i++){
     imagesPath.push(docs[i].image);
   }
-
+//  console.log("got here");
   res.render('index', {images: imagesPath});
   
 })

@@ -5,6 +5,11 @@ var bcrypt = require('bcryptjs');
 var UserSchema = mongoose.Schema({
 	username: {
 		type:String,
+		index:true
+	},
+	isVerified: { 
+		type: Boolean, 
+		default: false 
 	},
 	googleId: {
 		type: String
@@ -15,6 +20,12 @@ var UserSchema = mongoose.Schema({
 	password: {
 		type: String
 	},
+	passwordResetToken: {
+		type: String
+	},
+ 	passwordResetExpires: {
+ 		type :Date
+ 	},
 	email: {
 		type: String
 	},
