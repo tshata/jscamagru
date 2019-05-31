@@ -3,7 +3,7 @@ const route = express.Router();
 // we need the file system to delete the images.
 const fs = require("fs"); 
 var users = require('./users');
-
+var jimp = require('jimp');
 //import mongoose
 const mongoose = require("mongoose");
 
@@ -12,6 +12,8 @@ const upload = require("../config/storage");
 
 //Model
 const Image = require("../models/images");
+
+var ObjectId = require('mongodb').ObjectID;
 
 function ensureAuthenticated(req, res, next){
     if(req.isAuthenticated()){
@@ -75,7 +77,30 @@ route.get("/upload", ensureAuthenticated,(req, res, next)=>{
    
     
 });
+// /users/webcam
+route.get('/webcam', ensureAuthenticated, function(req, res){
+    Image.find({owner: 'ObjectId(' + req.user.id + ')'}, (err, images)=>{
+       console.log(images);
+       if(err){
+           console.log(err.message);
+       } else {
+          let imagesPath = [];
 
+          for (let i = 0;i < images.length;i++){
+            imagesPath.push(images[i].image.id);
+          }
+           //return the array of images found.
+           res.render("webcam", {
+               images: imagesPath
+           });
+       } 
+     });
+
+
+    res.render('webcam');
+});
+
+//jimp image merger
 
 //-----Manage the post requests.
 route.post("/upload", ensureAuthenticated, (req, res, next)=>{
@@ -89,7 +114,7 @@ route.post("/upload", ensureAuthenticated, (req, res, next)=>{
     // ---------- MULTER UPLOAD FUNCTION -------------
     upload(req, res, function (err) {
         // need to check if the req.file is set.
-      //  console.log(req.user);
+        console.log(req.user);
         if(req.file == null || req.file == undefined || req.file == ""){
             //redirect to the same url            
             res.redirect("/users/webcam");
@@ -117,7 +142,7 @@ route.post("/upload", ensureAuthenticated, (req, res, next)=>{
                         console.log(err);
                     }else{
                         //render the view again    
-                        res.render("/");
+                        res.render("webcam");
         
                     }
                 });

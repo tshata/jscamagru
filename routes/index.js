@@ -9,9 +9,8 @@ Image.find({}, (err, docs) => {
   if(err){
     throw err;
   }
-console.log(docs);
   let imagesPath = [];
-
+  console.log(imagesPath);
   for (let i = 0;i < docs.length;i++){
     imagesPath.push(docs[i].image);
   }

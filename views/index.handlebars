@@ -1,55 +1,17 @@
 <h2 class="page-header">Gallery</h2>
 <p>Welcome</p>  
 
-    <div class="row">
-    <div class="col-md-12 card" style="align-self: center;">
+    
+    <div class="col-md-12" id="pagination" style="align-self: center;">
+      <div class="row">
 
-      {{#each images as |image|}}
-          <!-- <div id="{{image.id}}" class="image">
-            <div class="delete">Delete</div><img src="{{image.image}}">
-          </div> -->
-          <div class="row">
-          <div class="col-lg-3 col-md-4 col-6" >
-          <img class="img-fluid" src="images/{{image}}">
-          </div>
-</div>
-      {{/each}}
-
-<!--        
-<div class="row">
-            <div class="card card-body ">
-               <img id="one" src="">
-            </div>
-            <div class="card card-body ">
-               <img src="images/images.png">
-            </div>
-            <div class="card card-body ">
-               <img src="images/images.png">
-            </div>
-            <div class="card card-body ">
-               <img src="images/images.png">
-            </div>
-            <div class="card card-body ">
-               <img src="images/images.png">
-            </div>
-            <div class="card card-body ">
-               <img src="images/images.png">
-            </div>
-            <div class="card card-body ">
-               <img src="images/images.png">
-            </div>
-            <div class="card card-body ">
-               <img src="images/images.png">
-            </div>
-            <div class="card card-body ">
-               <img src="images/images.png">
-            </div>
-
-          
-    </div>
--->
-
-      <ul class="thumbnails">
+        {{#each images as |image|}}
+      
+          <img class="gallery img-responsive" src="images/{{image}}">
+        {{/each}}
+      
+    
+    <ul class="thumbnails">
       {{#each elements}}
         <li href="/gallery" class="card card-body col-md-6"><a class="thumbnail" href="{{permalink}}" target="_blank"><img src="{{image.image}}" title="{{data.image.caption}}" /></a></li>
       {{/each}}
@@ -57,11 +19,4 @@
     </div>
     </div>
 <br>
-<ul id="pagination">
-  <li><a href="#">1</a></li>
-  <li><a href="#">2</a></li>
-  <li><a href="#">3</a></li>
-  <li><a href="#">4</a></li>
-  <li><a href="#">5</a></li>
-</ul>
 

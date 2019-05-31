@@ -20,7 +20,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
     video.srcObject = stream;
     // Play video
     video.play();
-  })
+})
 .catch(function(err) {
   console.log(`Error: ${err}`);
 });
@@ -37,15 +37,15 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
       canvas.setAttribute('height', height);
 
       streaming = true;
-    }
-  }, false);
+  }
+}, false);
 
   // Photo button event
   photoButton.addEventListener('click', function(e) {
     takePicture();
 
     e.preventDefault();
-  }, false);
+}, false);
 
   // Filter event
   photoFilter.addEventListener('change', function(e) {
@@ -55,7 +55,7 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
     video.style.filter = filter;
 
     e.preventDefault(); 
-  });
+});
 
   // Clear event
   clearButton.addEventListener('click', function(e) {
@@ -67,13 +67,12 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
     video.style.filter = filter;
     // Reset select list
     photoFilter.selectedIndex = 0;
-  });
+});
 
   // Take picture from canvas
   function takePicture() {
     // Create canvas
     const context = canvas.getContext('2d');
-    
     if(width && height) {
       // set canvas props
       canvas.width = width;
@@ -83,39 +82,71 @@ navigator.mediaDevices.getUserMedia({video: true, audio: false})
 
       // Create image from the canvas
       imgUrl = canvas.toDataURL('image/png');
-      console.log(imgUrl);
+   //   console.log(imgUrl);
 
       // Create img element
-      //  const img = document.createElement('img');
-      //  img.setAttribute('id', 'canvasImage');
+      const img = document.createElement('img');
+      img.setAttribute('id', 'canvasImage');
 
       // // // Set img src
-      //  img.setAttribute('src', imgUrl);
+      img.setAttribute('src', imgUrl);
 
       // // // Set image filter
-      //  img.style.filter = filter;
+      img.style.filter = filter;
 
       // // Add image to photos
       // photos.appendChild(img);
-    }
   }
+}
 function overLay(selectedImg){
-    if(imgUrl == null)
-        return;
+   //  if(imgUrl == null)
+     //    return;
 
-    selectedImg = selectedImg.target;
-    let img = new Image();
-    img.src = selectedImg.src;
-    console.log(img);
-    console.log(selectedImg);
-    const context = canvas.getContext('2d');
-    context.globalOperation = "lighter";
-    if(width && height) {
-      // set canvas props
-      canvas.width = width;
-      canvas.height = height;
-      // Draw an image of the video on the canvas
-      context.drawImage(img, 0, 0);
+     selectedImg = selectedImg.target;
+     let img = new Image();
+     img.src = selectedImg.src;
+   // // console.log(img);
+   // // console.log(selectedImg);
+   const context = canvas.getContext('2d');
 
+   context.globalOperation = "source-over";
+  let saved_img = context.drawImage(img, 0, 0, width,height);
+   //  if(width && height) {
+   //    // set canvas props
+       // canvas.width = width;
+       // canvas.height = height;
+
+   //    // Draw an image of the video on the canvas
+
+   var button = document.getElementById('save');
+   button.addEventListener('click', function (e) {
+    var dataURL = canvas.toDataURL();
+    button.href = saved_img;
+});
 }
+
+document.getElementById('file').onchange = function(e) {
+  var img = new Image();
+  img.onload = draw;
+  img.onerror = failed;
+  img.src = URL.createObjectURL(this.files[0]);
+};
+function draw() {
+  var canvas = document.getElementById('canvas');
+  canvas.width = this.width;
+  canvas.height = this.height;
+  var ctx = canvas.getContext('2d');
+  ctx.drawImage(this, 0,0);
 }
+function failed() {
+  console.error("The provided file couldn't be loaded as an Image media");
+}
+
+var button = document.getElementById('save');
+button.addEventListener('click', function (e) {
+    var dataURL = canvas.toDataURL('image/png');
+    button.href = dataURL;
+});
+
+
+//=======================================================================

@@ -34,6 +34,7 @@
     "express-session": "*",
     "express-validator": "*",
     "gridfs-stream": "*",
+    "jimp": "^0.6.4",
     "jsdom": "^15.1.0",
     "method-override": "*",
     "mongodb": "*",

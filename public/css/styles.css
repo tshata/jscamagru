@@ -90,9 +90,15 @@ body {
 }
 
 .card-body{
+  position:relative;
     margin: 1em;
+    float: left;
+    display: inline-block;
 }
-
+.gallery{
+  width: 100px;
+  height: 100px;
+}
 .ontop{
   
   z-index: -1;
@@ -163,12 +169,12 @@ body {
   width: 50%;
 }
 
-.sticker {
+#sticker {
   position: relative;
   z-index: 9;
 
   text-align: center;
-  border: 1px solid #d3d3d3;
+ 
   width: 1.5em;
   height: 1.8em;
   display: inline-block;
@@ -179,4 +185,32 @@ body {
 
 
 }
+
+.canvas{
+  z-index: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

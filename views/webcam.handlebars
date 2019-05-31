@@ -1,61 +1,74 @@
-  <form action="/webcam/upload" method="POST" enctype="multipart/form-data">
-    <!-- Photo Grid -->
-    <div class="row">
-      <div class="card card-body col-md-6">
-        <div class="row">
-          <video class="card col-md-9"id="video">Stream not available...</video>
-          <div data-draggable="target" class="stickers" style="background-color: grey">
+<form action="/webcam/upload" method="POST" enctype="multipart/form-data">
+  <!-- Photo Grid -->
+  <div class="row">
+    <div class="card-body col-md-6">
+      <div class="row">
+       
+        <video class="card" id="video">Stream not available...</video>
+
         
+     </div>
+     <div class="stickers" style="background-color: grey">
 
-            <img src="/images/stickers/Tech-Frame-Transparent-PNG.png" onclick="overLay(event)" class="sticker">
-            <img src="/images/stickers/Tech-Frame-Transparent-PNG.png" dragit="true" onclick="overLay(event)"draggable="true" class="sticker">
-           
+      <img src="/images/stickers/Tech-Frame-Transparent-PNG.png"  id="sticker" onclick="overLay(event)">
+      <img src="/images/stickers/Tech-Frame-PNG-File.png"  id="sticker" onclick="overLay(event)">
+      <img src="/images/stickers/Tech-Frame-PNG-Clipart.png"  id="sticker" onclick="overLay(event)">
+      <img src="/images/stickers/WeThinkCode-South-Africa.gif"  id="sticker" onclick="overLay(event)">
+      <p>Click on sticker to add it to the image</p>
 
-          </div>
-        
-        <br>
-        <div class="row" style="align-self: center;"><button id="photo-button" name="image_cam" class="btn btn-primary ">
-          Take Photo
-        </button>
-        <select id="photo-filter" class="select">
-          <option value="none">Normal</option>
-          <option value="grayscale(100%)">Grayscale</option>
-          <option value="sepia(100%)">Sepia</option>
-          <option value="invert(100%)">Invert</option>
-          <option value="hue-rotate(90deg)">Hue</option>
-          <option value="blur(10px)">Blur</option>
-          <option value="contrast(200%)">Contrast</option>
-        </select>
-        <button id="clear-button" class="btn btn-primary">Clear</button> 
-      </div>
 
-      <br>
-      <div >
-
-        <div class="custom-file mb-3">
-          <input type="file" name="image_up" id="file" class="custom-file-input">
-          <label for="file" class="custom-file-label">Choose File</label>
-        </div>
-        <input type="submit" value="Submit" class="btn btn-primary btn-block">
-        </div>
-      </div>
     </div>
-    <div id="photos" class="card card-body col-md-6">
+     <div>
 
-      <canvas id="canvas"></canvas>
-</div></div>
-    </div>
+    <button id="photo-button" name="image_up" class="btn btn-primary ">
+    Take Photo
+  </button>
+  <button id="save"  class="btn btn-primary ">
+     Save
+   </button>
+
+   <button id="clear-button" class="btn btn-primary">Clear</button> 
+ <select id="photo-filter" class="select">
+    <option value="none">Choose Filters</option>
+    <option value="grayscale(100%)">Grayscale</option>
+    <option value="sepia(100%)">Sepia</option>
+    <option value="invert(100%)">Invert</option>
+    <option value="hue-rotate(90deg)">Hue</option>
+    <option value="blur(10px)">Blur</option>
+    <option value="contrast(200%)">Contrast</option>
+  </select>
+  <br>
   </div>
-</form>
+  <div>
+
+  <div class="custom-file mb-3">
+    <input type="file" name="image_up" id="file" class="custom-file-input">
+    <label for="file" class="custom-file-label">Choose File</label>
+  </div>
+  <br>
+  <input type="submit" value="Submit" class="btn btn-primary btn-block">
+
+</div>
+  </div>   
+
+<div id="photos" aria-hidden="true" class="card col-md-5">
+      <canvas id="canvas"> </canvas>
+</div>
+       <div class="card-body card col-md-12">
 {{#each images as |image|}}
-          <!-- <div id="{{image.id}}" class="image">
-            <div class="delete">Delete</div><img src="{{image.image}}">
-          </div> -->
+<img  class="img-responsive gallery" src="/images/{{image}}">
+{{/each}}
+        
+     </div>
+</div>
+</div>
 
-          <img  class="img-responsive" src="/images/{{image}}">
+ 
 
+  
 
-          {{/each}}
-          <script type="text/javascript" src="/js/webcam.js"></script> 
+</div>
+</form>
 
+<script type="text/javascript" src="/js/webcam.js"></script> 
 

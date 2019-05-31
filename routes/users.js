@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express.Router();
+var router = require("./upload");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth20');
@@ -35,28 +35,7 @@ router.get('/logout', function(req, res){
 	res.redirect('login');
 });
 
-// /users/webcam
-router.get('/webcam', ensureAuthenticated, function(req, res){
-	Image.find({owner: 'ObjectId(' + req.user.id + ')'}, (err, images)=>{
-       console.log(images);
-       if(err){
-           console.log(err.message);
-       } else {
-          let imagesPath = [];
 
-          for (let i = 0;i < images.length;i++){
-            imagesPath.push(images[i].image);
-          }
-           //return the array of images found.
-           res.render("webcam", {
-               images: imagesPath
-           });
-       } 
-	 });
-
-
-	res.render('webcam');
-});
 
 
 // /users/register
@@ -91,7 +70,7 @@ router.post('/register', function(req, res){
 
 		User.createUser(newUser, function(err, user){
 			if(err) throw err;
-			console.log(user);
+			//console.log(user);
 		});
 
 		req.flash('success_msg', 'You are registered and can now login');
@@ -119,6 +98,7 @@ passport.use(new LocalStrategy(
 		if(!user){
 			return done(null, false, {message: 'Unknown User'});
 		}
+		console.log(user);
 	User.comparePassword(password, user.password, function(err, isMatch){
 		if(err) throw err;
 		if(isMatch){
@@ -143,7 +123,7 @@ passport.use(
 			if(currentUser){
 				//if we already have this user
 				console.log('user is:' + currentUser);
-				done(null, currentUser);
+			return	done(null, currentUser);
 			}
 			else
 			{
@@ -152,7 +132,7 @@ passport.use(
 				googleId: profile.id
 				}).save().then((newUser) => {
 				console.log('new user created: ' + newUser);
-				done(null, newUser);
+			return	done(null, newUser);
 				});
 			}
 		});
@@ -170,7 +150,7 @@ passport.use(new WeThinkCodeStrategy({
 		User.findOne({wethinkcodeId: profile.id}).then((currentUser) => {
 			if(currentUser){
 				//if we already have this user
-				console.log('user is:' + currentUser);
+		//		console.log('user is:' + currentUser);
 				done(null, currentUser);
 			}
 			else
@@ -179,8 +159,8 @@ passport.use(new WeThinkCodeStrategy({
 				username: profile.login,
 				wethinkcodeId: profile.id
 				}).save().then((newUser) => {
-				console.log('new user created: ' + newUser);
-				done(null, newUser);
+		//		console.log('new user created: ' + newUser);
+		return		done(null, newUser);
 				});
 			}
 		});
@@ -189,12 +169,12 @@ passport.use(new WeThinkCodeStrategy({
 	)
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+return done(null, user.id);
 });
 
 passport.deserializeUser(function(id, done) {
   User.getUserById(id, function(err, user) {
-    done(err, user);
+ return   done(err, user);
   });
 });
 
