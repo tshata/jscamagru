@@ -4,7 +4,7 @@
   "description": "JavaScript Camagru",
   "main": "app.js",
   "scripts": {
-    "start":"node app",
+    "start": "node app.js",
     "test": "mocha"
   },
   "repository": {
@@ -53,6 +53,7 @@
     "superagent": "*"
   },
   "devDependencies": {
+    "npm-start-command": "^1.0.0",
     "ws": "3.3.2"
   }
 }
