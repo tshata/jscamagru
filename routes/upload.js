@@ -25,7 +25,7 @@ function ensureAuthenticated(req, res, next){
 }
 
 
-route.delete("/uploads/:id", (req,res)=>{
+route.delete("/uploads/:id", ensureAuthenticated, (req,res)=>{
     //get the id from the ajax response
     //in this case the id is the name of the image
     //we need it in order to delete the image from the uploads directory
@@ -53,6 +53,36 @@ route.delete("/uploads/:id", (req,res)=>{
     });
 
  });
+
+// route.save("/uploads/:id", (req,res)=>{
+//     //get the id from the ajax response
+//     //in this case the id is the name of the image
+//     //we need it in order to delete the image from the uploads directory
+//     let query= {image:req.params.id};
+
+//     Image.save(query, (err)=>{
+//         if(err){
+//             console.log(err);
+//         }else{
+//             //delete the image from the directory
+//             //this is where we need the File System.
+//             //we use the params.id to find the file
+//             let $filePath= "./public/images/" + req.params.id
+//             fs.linkSync($filePath, (err)=>{
+//                 if(err){
+//                     //send an error if the image was not deleted
+//                     console.log("couldnt save " + req.params.id + " image");
+//                 }
+                                
+                               
+//             });
+
+//             res.send("The image was saved...");
+//         }
+//     });
+
+//  });
+
  
 
 //-----Manage the get requests.

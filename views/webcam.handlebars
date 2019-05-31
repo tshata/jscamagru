@@ -3,69 +3,72 @@
   <div class="row">
     <div class="card-body col-md-6">
       <div class="row">
-       
+
         <video class="card" id="video">Stream not available...</video>
 
         
-     </div>
-     <div class="stickers card-body">
+      </div>
+      <div class="stickers card-body" style="background-color: grey; border-radius: 5px;">
 
-      <img src="/images/stickers/Tech-Frame-Transparent-PNG.png"  id="sticker" onclick="overLay(event)">
-      <img src="/images/stickers/Tech-Frame-PNG-File.png"  id="sticker" onclick="overLay(event)">
-      <img src="/images/stickers/Tech-Frame-PNG-Clipart.png"  id="sticker" onclick="overLay(event)">
-      <img src="/images/stickers/WeThinkCode-South-Africa.gif"  id="sticker" onclick="overLay(event)">
-      <p>Click on sticker to add it to the image</p>
-  <button id="photo-button" name="image_up" class="btn btn-primary ">
-    Take Photo
-  </button>
-  <button id="save"  class="btn btn-primary ">
-     Save
-   </button>
+        <img src="/images/stickers/Tech-Frame-Transparent-PNG.png"  id="sticker" onclick="overLay(event)">
+        <img src="/images/stickers/Tech-Frame-PNG-File.png"  id="sticker" onclick="overLay(event)">
+        <img src="/images/stickers/Tech-Frame-PNG-Clipart.png"  id="sticker" onclick="overLay(event)">
+        <img src="/images/stickers/WeThinkCode-South-Africa.gif"  id="sticker" onclick="overLay(event)">
+        <img src="/images/stickers/Text-Balloon-PNG-Image.png"  id="sticker" onclick="overLay(event)">
+        <img src="/images/stickers/School-Border-PNG-Transparent.png"  id="sticker" onclick="overLay(event)">
+        <img src="/images/stickers/Tech-Frame-PNG-Clipart.png"  id="sticker" onclick="overLay(event)">
+                <p>Click on sticker to add it to the image</p>
+        <button id="photo-button" name="image_cam" class="btn btn-primary ">
+          Take Photo
+        </button>
+        <button id="save" onclick="to_image()" class="btn btn-primary ">
+         Save
+       </button>
 
-   <button id="clear-button" class="btn btn-primary">Clear</button> 
- <select id="photo-filter" class="select">
-    <option value="none">Choose Filters</option>
-    <option value="grayscale(100%)">Grayscale</option>
-    <option value="sepia(100%)">Sepia</option>
-    <option value="invert(100%)">Invert</option>
-    <option value="hue-rotate(90deg)">Hue</option>
-    <option value="blur(10px)">Blur</option>
-    <option value="contrast(200%)">Contrast</option>
-  </select>
-  <br>
-  </div>
-  <div>
+       <button id="clear-button" class="btn btn-primary">Clear</button> 
+       <select id="photo-filter" class="select">
+        <option value="none">Choose Filters</option>
+        <option value="grayscale(100%)">Grayscale</option>
+        <option value="sepia(100%)">Sepia</option>
+        <option value="invert(100%)">Invert</option>
+        <option value="hue-rotate(90deg)">Hue</option>
+        <option value="blur(10px)">Blur</option>
+        <option value="contrast(200%)">Contrast</option>
+      </select>
+      <br>
+    </div>
+    <div>
 
     </div>
-     <div>
+    <div>
 
-  
 
-  <div class="custom-file mb-3">
-    <input type="file" name="image_up" id="file" class="custom-file-input">
-    <label for="file" class="custom-file-label">Choose File</label>
-  </div>
-  <br>
-  <input type="submit" value="Submit" class="btn btn-primary btn-block">
 
-</div>
+      <div class="custom-file mb-3">
+        <input type="file" name="image_up" id="file" class="custom-file-input">
+        <label for="file" class="custom-file-label">Choose File</label>
+      </div>
+      <br>
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+
+    </div>
   </div>   
 
-<div id="photos" aria-hidden="true" class="card col-md-5">
-      <canvas id="canvas"> </canvas>
-</div>
-       <div class="card-body card col-md-12">
-{{#each images as |image|}}
-<img  class="img-responsive gallery_own" src="/images/{{image}}">
-{{/each}}
-        
-     </div>
+  <div id="photos" aria-hidden="true" class="card col-md-5">
+    <canvas id="canvas"> </canvas>
+  </div>
+  <div class="card-body card col-md-12">
+    {{#each images as |image|}}
+    <img  class="img-responsive gallery_own" src="/images/{{image}}">
+    {{/each}}
+
+  </div>
 </div>
 </div>
 
- 
 
-  
+
+
 
 </div>
 </form>

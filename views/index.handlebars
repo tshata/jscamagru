@@ -1,9 +1,11 @@
 <h2 class="page-header">Gallery</h2>
-<p>Welcome</p>  
-
-
+{{#if user}}
+<p>Welcome to Camagru, you can edit and save your pictures in the webcam tab. </p>  
+{{else}}
+<p>Welcome to Camagru, this is the public gallery, sign up to, edit, like and leave a comment on your favourite pictures!</p>
+{{/if}}
 <div class="col-md-12" id="pagination" style="align-self: center;">
-  <div class="row">
+  <div class="row" href="/webcam/gallery">
 
     {{#each images as |image|}}
     
