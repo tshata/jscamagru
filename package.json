@@ -4,6 +4,7 @@
   "description": "JavaScript Camagru",
   "main": "app.js",
   "scripts": {
+    "start":"node app",
     "test": "mocha"
   },
   "repository": {
